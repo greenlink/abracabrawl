@@ -2,7 +2,7 @@ function love.conf(t)
     t.console = false
     t.version = "0.0.1"
     t.window.title = "AbracaBrawl"
-    --t.window.icon = nil
+    t.window.icon = "assets/icons/icon_john.ico"
     t.window.width = 600
     t.window.height = 600
     t.window.borderless = false
