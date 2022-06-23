@@ -1,7 +1,7 @@
 function love.load()
     anim8 = require 'libraries/anim8'
     bg_title = love.graphics.newImage("assets/maps/backgrounds/mountain_title.png")
-    bg_title:setWrap("repeat", "repeat")
+    bg_title:setWrap("mirroredrepeat")
     bg_title_quad = love.graphics.newQuad(0, 0, 1280, 720, bg_title:getWidth(), bg_title:getHeight())
     city_floor = love.graphics.newImage("assets/maps/tileSets/city_floor.png")
     city_floor:setWrap("repeat", "repeat")
