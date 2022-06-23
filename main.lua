@@ -3,12 +3,15 @@ function love.load()
     bg_title = love.graphics.newImage("assets/maps/backgrounds/mountain_title.png")
     bg_title:setWrap("repeat", "repeat")
     bg_title_quad = love.graphics.newQuad(0, 0, 1280, 720, bg_title:getWidth(), bg_title:getHeight())
+    city_floor = love.graphics.newImage("assets/maps/tileSets/city_floor.png")
+    city_floor:setWrap("repeat", "repeat")
+    city_floor_quad = love.graphics.newQuad(0, 0, 1280, 32, city_floor:getWidth(), city_floor:getHeight())
     love.graphics.setBackgroundColor(love.math.colorFromBytes(148, 217, 235))
     love.graphics.setDefaultFilter("nearest", "nearest")
     love.keyboard.setKeyRepeat(true)
     rock = {}
     rock.x = 612
-    rock.y = 644
+    rock.y = 636
     rock.scalex = 2
     rock.scaley = 2
     rock.offsetx = 26
@@ -47,9 +50,7 @@ end
 
 function love.draw()
     love.graphics.draw(bg_title, bg_title_quad, 0, 0, nil, 4.5, 4.5)
-
-    love.graphics.setColor(love.math.colorFromBytes(140, 96, 48))
-    love.graphics.rectangle("fill", 0, 670, 1280, 50)
+    love.graphics.draw(city_floor, city_floor_quad, 0, 688)
 
     love.graphics.setColor(love.math.colorFromBytes(224, 13, 9))
     love.graphics.print(timer, 40, 10, nil, 3)
