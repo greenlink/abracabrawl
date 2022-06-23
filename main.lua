@@ -1,6 +1,4 @@
 function love.load()
-    love.window.setTitle("AbracaBrawl")
-    love.window.setMode(600, 600, { fullscreen=false, resizable=false, centered=true, vsync=0, msaa=8})
     love.graphics.setBackgroundColor(148/255, 217/255, 235/255)
     rockImage = love.graphics.newImage("assets/sprites/objects/rock.png")
     rockInit = love.graphics.newQuad(0, 0, 52, 52, rockImage:getDimensions())
@@ -10,7 +8,6 @@ function love.load()
     rock.x = 300
     rock.y = 524
     timer = 0
-    colorMode = love.graphics.getColorMode
 end
 
 function love.update(dt)
