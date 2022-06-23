@@ -1,11 +1,16 @@
 function love.load()
     anim8 = require 'libraries/anim8'
+    background_title = love.graphics.newImage("assets/maps/backgrounds/mountain_title.png")
     love.graphics.setBackgroundColor(love.math.colorFromBytes(148, 217, 235))
     love.graphics.setDefaultFilter("nearest", "nearest")
     love.keyboard.setKeyRepeat(true)
     rock = {}
-    rock.x = 300
+    rock.x = 612
     rock.y = 644
+    rock.scalex = 2
+    rock.scaley = 2
+    rock.offsetx = 26
+    rock.offsety = 26
     rock.speed = 0.4
     rock.spriteSheet = love.graphics.newImage("assets/sprites/objects/rock.png")
     rock.grid = anim8.newGrid(52,52, rock.spriteSheet:getWidth(), rock.spriteSheet:getHeight())
@@ -39,6 +44,8 @@ function love.update(dt)
 end
 
 function love.draw()
+    love.graphics.draw(background_title, 0, 0, nil, 4.705, 4.5)
+
     love.graphics.setColor(love.math.colorFromBytes(140, 96, 48))
     love.graphics.rectangle("fill", 0, 670, 1280, 50)
 
@@ -46,7 +53,7 @@ function love.draw()
     love.graphics.print(timer, 40, 10, nil, 3)
 
     love.graphics.setColor(1, 1, 1, 1)
-    rock.currentAnimation:draw(rock.spriteSheet, rock.x, rock.y)
+    rock.currentAnimation:draw(rock.spriteSheet, rock.x, rock.y, nil, rock.scalex, rock.scaley, rock.offsetx, rock.offsety)
 end
 
 function move_rock_to_right()
