@@ -1,14 +1,11 @@
 function love.load()
     love.graphics.setBackgroundColor(love.math.colorFromBytes(148, 217, 235))
     love.keyboard.setKeyRepeat(true)
-    rockImage = love.graphics.newImage("assets/sprites/objects/rock.png")
-    rockInit = love.graphics.newQuad(0, 0, 52, 52, rockImage:getDimensions())
-    rockSecond = love.graphics.newQuad(59, 0, 52, 52, rockImage:getDimensions())
-    rockQuad = rockInit
     rock = {}
     rock.x = 300
     rock.y = 644
     rock.speed = 5
+    rock.spriteSheet = love.graphics.newImage("assets/sprites/objects/rock.png")
     timer = 0
     keyboard_actions = {["right"] = move_rock_to_right, ["left"] = move_rock_to_left}
 end
@@ -25,7 +22,7 @@ function love.draw()
     love.graphics.print(timer, 40, 10, 0, 1, 1)
 
     love.graphics.setColor(1, 1, 1, 1)
-    love.graphics.draw(rockImage, rockQuad, rock.x, rock.y)
+    --love.graphics.draw(rockImage, rockQuad, rock.x, rock.y)
 end
 
 function love.keypressed(key, scancode, isrepeat)
