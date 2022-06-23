@@ -7,6 +7,7 @@ function love.load()
     rock = {}
     rock.x = 300
     rock.y = 644
+    rock.speed = 2
     timer = 0
 end
 
@@ -14,11 +15,11 @@ function love.update(dt)
     timer = timer + dt
 
     if love.keyboard.isDown("right") then
-        rock.x = rock.x + 2
+        rock.x = rock.x + rock.speed
     end
 
     if love.keyboard.isDown("left") then
-        rock.x = rock.x - 2
+        rock.x = rock.x - rock.speed
     end
 
 end
