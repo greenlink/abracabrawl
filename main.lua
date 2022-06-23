@@ -1,31 +1,34 @@
 function love.load()
-    love.graphics.setBackgroundColor(148/255, 217/255, 235/255)
+    love.graphics.setBackgroundColor(love.math.colorFromBytes(148, 217, 235))
     rockImage = love.graphics.newImage("assets/sprites/objects/rock.png")
     rockInit = love.graphics.newQuad(0, 0, 52, 52, rockImage:getDimensions())
     rockSecond = love.graphics.newQuad(59, 0, 52, 52, rockImage:getDimensions())
     rockQuad = rockInit
     rock = {}
     rock.x = 300
-    rock.y = 524
+    rock.y = 644
     timer = 0
 end
 
 function love.update(dt)
     timer = timer + dt
-    divider = math.floor(timer)
-    if 5 % divider == 0 then
-        rockQuad = rockSecond
-    elseif 10 % divider == 0 then
-        rockQuad = rockInit
+
+    if love.keyboard.isDown("right") then
+        rock.x = rock.x + 2
     end
+
+    if love.keyboard.isDown("left") then
+        rock.x = rock.x - 2
+    end
+
 end
 
 function love.draw()
-    love.graphics.setColor(140/255, 96/255, 48/255)
-    love.graphics.rectangle("fill", 0, 550, 600, 50)
+    love.graphics.setColor(love.math.colorFromBytes(140, 96, 48))
+    love.graphics.rectangle("fill", 0, 670, 1280, 50)
 
-    love.graphics.setColor(108/255, 199/255, 76/255)
-    love.graphics.print({{108/255, 199/255, 76/255}, timer}, 300, 20, 0, 2, 2)
+    love.graphics.setColor(love.math.colorFromBytes(224, 13, 9))
+    love.graphics.print(timer, 40, 10, 0, 1, 1)
 
     love.graphics.setColor(1, 1, 1, 1)
     love.graphics.draw(rockImage, rockQuad, rock.x, rock.y)
