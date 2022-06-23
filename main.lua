@@ -11,8 +11,8 @@ function love.load()
     rock.grid = anim8.newGrid(52,52, rock.spriteSheet:getWidth(), rock.spriteSheet:getHeight())
     rock.isMoving = false
     rock.animations = {}
-    rock.animations.right = anim8.newAnimation(rock.grid("1-6", 1), 0.1)
-    rock.animations.left = anim8.newAnimation(rock.grid("6-1", 1), 0.1)
+    rock.animations.right = anim8.newAnimation(rock.grid("1-6", 2), 0.15)
+    rock.animations.left = anim8.newAnimation(rock.grid("1-6", 1), 0.15)
     rock.currentAnimation = rock.animations.right
     timer = 0
     keyboard_actions_pressed = {["right"] = move_rock_to_right, ["left"] = move_rock_to_left}
@@ -73,9 +73,6 @@ end
 
 function love.keypressed(key, scancode, isrepeat)
     move_rock(key)
-    if isrepeat == false then
-        rock.isMoving = false
-    end
 end
 
 function move_rock(key)
