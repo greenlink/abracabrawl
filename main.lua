@@ -1,6 +1,8 @@
 function love.load()
     anim8 = require 'libraries/anim8'
-    background_title = love.graphics.newImage("assets/maps/backgrounds/mountain_title.png")
+    bg_title = love.graphics.newImage("assets/maps/backgrounds/mountain_title.png")
+    bg_title:setWrap("repeat", "repeat")
+    bg_title_quad = love.graphics.newQuad(0, 0, 1280, 720, bg_title:getWidth(), bg_title:getHeight())
     love.graphics.setBackgroundColor(love.math.colorFromBytes(148, 217, 235))
     love.graphics.setDefaultFilter("nearest", "nearest")
     love.keyboard.setKeyRepeat(true)
@@ -44,7 +46,7 @@ function love.update(dt)
 end
 
 function love.draw()
-    love.graphics.draw(background_title, 0, 0, nil, 4.705, 4.5)
+    love.graphics.draw(bg_title, bg_title_quad, 0, 0, nil, 4.5, 4.5)
 
     love.graphics.setColor(love.math.colorFromBytes(140, 96, 48))
     love.graphics.rectangle("fill", 0, 670, 1280, 50)
