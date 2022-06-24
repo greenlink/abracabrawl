@@ -22,8 +22,8 @@ function love.load()
     merlin.gridWalk = anim8.newGrid(80, 80, merlin.spriteSheetWalk:getWidth(), merlin.spriteSheetWalk:getHeight())
     merlin.isMoving = false
     merlin.animations = {}
-    merlin.animations.right = anim8.newAnimation(merlin.gridWalk("1-5", 1), 0.2)
-    merlin.animations.left = anim8.newAnimation(merlin.gridWalk("1-5", 2), 0.2)
+    merlin.animations.right = anim8.newAnimation(merlin.gridWalk("1-8", 1), 0.125)
+    merlin.animations.left = anim8.newAnimation(merlin.gridWalk("1-8", 2), 0.125)
     merlin.currentAnimation = merlin.animations.right
     timer = 0
     keyboard_actions_pressed = {["right"] = move_merlin_to_right, ["left"] = move_merlin_to_left}
@@ -42,7 +42,7 @@ function love.update(dt)
         isMoving = move_merlin_to_left(isMoving)
     end
 
-    if isMoving == false then
+    if isMoving == false and merlin.isMoving == false then
         merlin.currentAnimation:pauseAtEnd()
     end
 
@@ -74,9 +74,9 @@ function move_merlin_to_left()
     return true
 end
 
---[[ function love.keypressed(key, scancode, isrepeat)
+function love.keypressed(key, scancode, isrepeat)
     move_merlin(key)
-end ]]
+end
 
 function move_merlin(key)
     if keyboard_actions_pressed[key] ~= nil then
@@ -84,16 +84,17 @@ function move_merlin(key)
     end
 end
 
---[[ function love.keyreleased(key)
+function love.keyreleased(key)
     stop_merlin(key)
-end ]]
+end
 
 function stop_merlin(key)
     if keyboard_actions_released[key] ~= nil then
-        keyboard_actions_released[key]()
+        merlin.isMoving = keyboard_actions_released[key]()
     end
 end
 
 function stop_merlin()
     merlin.currentAnimation:pauseAtEnd()
+    return false
 end
