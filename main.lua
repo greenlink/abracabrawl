@@ -1,5 +1,7 @@
 function love.load()
     anim8 = require 'libraries/anim8'
+    camera = require 'libraries/camera'
+    cam = camera()
     bg_title = {}
     bg_title.image = love.graphics.newImage("assets/maps/backgrounds/city_bg.png")
     bg_title.image:setWrap("mirroredrepeat")
@@ -11,11 +13,11 @@ function love.load()
     love.graphics.setDefaultFilter("nearest", "nearest")
     love.keyboard.setKeyRepeat(true)
     merlin = {}
-    merlin.x = 612
+    merlin.x = 640
     merlin.y = 656
     merlin.scalex = 2
     merlin.scaley = 2
-    merlin.offsetx = 80
+    merlin.offsetx = 40
     merlin.offsety = 80
     merlin.speed = 0.5
     merlin.spriteSheetWalk = love.graphics.newImage("assets/sprites/characters/player/merlin_walk.png")
@@ -47,17 +49,22 @@ function love.update(dt)
     end
 
     merlin.currentAnimation:update(dt)
+
+    cam:lookAt(merlin.x, merlin.y-296, nil, 2, 2, merlin.offsetx, merlin.offsety)
+
+    local windowWidth = love.graphics.getWidth()
+
+    if cam.x < windowWidth/2 then
+        cam.x = windowWidth/2
+    end
 end
 
 function love.draw()
-    love.graphics.draw(bg_title.image, bg_title.imageQuad, 0, 0, nil, 4.5, 4.5)
-    love.graphics.draw(city_floor, city_floor_quad, 0, 656, nil, 2)
-
-    love.graphics.setColor(love.math.colorFromBytes(224, 13, 9))
-    love.graphics.print(timer, 40, 10, nil, 3)
-
-    love.graphics.setColor(1, 1, 1, 1)
-    merlin.currentAnimation:draw(merlin.spriteSheetWalk, merlin.x, merlin.y, nil, merlin.scalex, merlin.scaley, merlin.offsetx, merlin.offsety)
+    cam:attach()
+        love.graphics.draw(bg_title.image, bg_title.imageQuad, 0, 0, nil, 4.5, 4.5)
+        love.graphics.draw(city_floor, city_floor_quad, 0, 656, nil, 2)
+        merlin.currentAnimation:draw(merlin.spriteSheetWalk, merlin.x, merlin.y, nil, merlin.scalex, merlin.scaley, merlin.offsetx, merlin.offsety)
+    cam:detach()
 end
 
 function move_merlin_to_right()
