@@ -1,32 +1,33 @@
 function love.load()
     anim8 = require 'libraries/anim8'
-    bg_title = love.graphics.newImage("assets/maps/backgrounds/mountain_title.png")
-    bg_title:setWrap("mirroredrepeat")
-    bg_title_quad = love.graphics.newQuad(0, 0, 1280, 720, bg_title:getWidth(), bg_title:getHeight())
+    bg_title = {}
+    bg_title.image = love.graphics.newImage("assets/maps/backgrounds/city_bg.png")
+    bg_title.image:setWrap("mirroredrepeat")
+    bg_title.imageQuad = love.graphics.newQuad(0, 0, 1280, 720, bg_title.image:getWidth(), bg_title.image:getHeight())
     city_floor = love.graphics.newImage("assets/maps/tileSets/city_floor.png")
     city_floor:setWrap("repeat", "repeat")
     city_floor_quad = love.graphics.newQuad(0, 0, 1280, 32, city_floor:getWidth(), city_floor:getHeight())
     love.graphics.setBackgroundColor(love.math.colorFromBytes(148, 217, 235))
     love.graphics.setDefaultFilter("nearest", "nearest")
     love.keyboard.setKeyRepeat(true)
-    rock = {}
-    rock.x = 612
-    rock.y = 636
-    rock.scalex = 2
-    rock.scaley = 2
-    rock.offsetx = 26
-    rock.offsety = 26
-    rock.speed = 0.4
-    rock.spriteSheet = love.graphics.newImage("assets/sprites/objects/rock.png")
-    rock.grid = anim8.newGrid(52,52, rock.spriteSheet:getWidth(), rock.spriteSheet:getHeight())
-    rock.isMoving = false
-    rock.animations = {}
-    rock.animations.right = anim8.newAnimation(rock.grid("1-6", 2), 0.14)
-    rock.animations.left = anim8.newAnimation(rock.grid("1-6", 1), 0.14)
-    rock.currentAnimation = rock.animations.right
+    merlin = {}
+    merlin.x = 612
+    merlin.y = 656
+    merlin.scalex = 2
+    merlin.scaley = 2
+    merlin.offsetx = 80
+    merlin.offsety = 80
+    merlin.speed = 0.5
+    merlin.spriteSheetWalk = love.graphics.newImage("assets/sprites/characters/player/merlin_walk.png")
+    merlin.gridWalk = anim8.newGrid(80, 80, merlin.spriteSheetWalk:getWidth(), merlin.spriteSheetWalk:getHeight())
+    merlin.isMoving = false
+    merlin.animations = {}
+    merlin.animations.right = anim8.newAnimation(merlin.gridWalk("1-5", 1), 0.2)
+    merlin.animations.left = anim8.newAnimation(merlin.gridWalk("1-5", 2), 0.2)
+    merlin.currentAnimation = merlin.animations.right
     timer = 0
-    keyboard_actions_pressed = {["right"] = move_rock_to_right, ["left"] = move_rock_to_left}
-    keyboard_actions_released = {["right"] = stop_rock, ["left"] = stop_rock}
+    keyboard_actions_pressed = {["right"] = move_merlin_to_right, ["left"] = move_merlin_to_left}
+    keyboard_actions_released = {["right"] = stop_merlin, ["left"] = stop_merlin}
 end
 
 function love.update(dt)
@@ -34,64 +35,65 @@ function love.update(dt)
     timer = timer + dt
 
     if love.keyboard.isDown("right") then
-        isMoving = move_rock_to_right(isMoving)
+        isMoving = move_merlin_to_right(isMoving)
     end
 
     if love.keyboard.isDown("left") then
-        isMoving = move_rock_to_left(isMoving)
+        isMoving = move_merlin_to_left(isMoving)
     end
 
     if isMoving == false then
-        rock.currentAnimation:gotoFrame(1)
+        merlin.currentAnimation:pauseAtEnd()
     end
 
-    rock.currentAnimation:update(dt)
+    merlin.currentAnimation:update(dt)
 end
 
 function love.draw()
-    love.graphics.draw(bg_title, bg_title_quad, 0, 0, nil, 4.5, 4.5)
-    love.graphics.draw(city_floor, city_floor_quad, 0, 688)
+    love.graphics.draw(bg_title.image, bg_title.imageQuad, 0, 0, nil, 4.5, 4.5)
+    love.graphics.draw(city_floor, city_floor_quad, 0, 656, nil, 2)
 
     love.graphics.setColor(love.math.colorFromBytes(224, 13, 9))
     love.graphics.print(timer, 40, 10, nil, 3)
 
     love.graphics.setColor(1, 1, 1, 1)
-    rock.currentAnimation:draw(rock.spriteSheet, rock.x, rock.y, nil, rock.scalex, rock.scaley, rock.offsetx, rock.offsety)
+    merlin.currentAnimation:draw(merlin.spriteSheetWalk, merlin.x, merlin.y, nil, merlin.scalex, merlin.scaley, merlin.offsetx, merlin.offsety)
 end
 
-function move_rock_to_right()
-    rock.x = rock.x + rock.speed
-    rock.currentAnimation = rock.animations.right
+function move_merlin_to_right()
+    merlin.x = merlin.x + merlin.speed
+    merlin.currentAnimation = merlin.animations.right
+    merlin.currentAnimation:resume()
     return true
 end
 
-function move_rock_to_left()
-    rock.x = rock.x - rock.speed
-    rock.currentAnimation = rock.animations.left
+function move_merlin_to_left()
+    merlin.x = merlin.x - merlin.speed
+    merlin.currentAnimation = merlin.animations.left
+    merlin.currentAnimation:resume()
     return true
 end
 
-function love.keypressed(key, scancode, isrepeat)
-    move_rock(key)
-end
+--[[ function love.keypressed(key, scancode, isrepeat)
+    move_merlin(key)
+end ]]
 
-function move_rock(key)
+function move_merlin(key)
     if keyboard_actions_pressed[key] ~= nil then
-        rock.isMoving = keyboard_actions_pressed[key]()
+        merlin.isMoving = keyboard_actions_pressed[key]()
     end
 end
 
-function love.keyreleased(key)
-    stop_rock(key)
-end
+--[[ function love.keyreleased(key)
+    stop_merlin(key)
+end ]]
 
-function stop_rock(key)
+function stop_merlin(key)
     if keyboard_actions_released[key] ~= nil then
         keyboard_actions_released[key]()
     end
 end
 
-function stop_rock()
-    rock.currentAnimation:gotoFrame(1)
-    rock.isMoving = false
+function stop_merlin()
+    merlin.currentAnimation:pauseAtEnd()
 end
