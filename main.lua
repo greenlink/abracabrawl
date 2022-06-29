@@ -1,6 +1,7 @@
 function love.load()
     anim8 = require 'libraries/anim8'
     camera = require 'libraries/camera'
+    playerSource = require 'src/playerSource'
     cam = camera()
     bg_title = {}
     bg_title.image = love.graphics.newImage("assets/maps/backgrounds/city_bg.png")
@@ -12,29 +13,13 @@ function love.load()
     love.graphics.setBackgroundColor(love.math.colorFromBytes(148, 217, 235))
     love.graphics.setDefaultFilter("nearest", "nearest")
     love.keyboard.setKeyRepeat(true)
-    merlin = {}
-    merlin.scalex = 4
-    merlin.scaley = 4
-    merlin.offsetx = 17
-    merlin.offsety = 21
-    merlin.x = love.graphics.getWidth()/2 - merlin.offsetx
-    merlin.y = CalculateMerlinY()
-    merlin.speed = 0.5
-    merlin.spriteSheetWalk = love.graphics.newImage("assets/sprites/characters/player/player_walk.png")
-    merlin.gridWalk = anim8.newGrid(36, 42, merlin.spriteSheetWalk:getWidth(), merlin.spriteSheetWalk:getHeight())
-    merlin.isMoving = false
-    merlin.animations = {}
-    merlin.animations.right = anim8.newAnimation(merlin.gridWalk("4-1", 1), 0.125)
-    merlin.animations.left = anim8.newAnimation(merlin.gridWalk("4-1", 2), 0.125)
-    merlin.currentAnimation = merlin.animations.right
-    timer = 0
+    merlin = playerSource.newPlayer()
     keyboard_actions_pressed = {["right"] = move_merlin_to_right, ["left"] = move_merlin_to_left}
     keyboard_actions_released = {["right"] = stop_merlin, ["left"] = stop_merlin}
 end
 
 function love.update(dt)
     local isMoving = false
-    timer = timer + dt
 
     if love.keyboard.isDown("right") then
         isMoving = move_merlin_to_right(isMoving)
@@ -111,10 +96,4 @@ function CalculateCamHeight()
     local city_floorH = city_floor:getHeight()*2
     --[[ return merlin.y+trueOffsetY+city_floorH-love.graphics.getHeight()/2 ]]
     return 360
-end
-
-function CalculateMerlinY()
-    local city_floorH = city_floor:getHeight()*2
-    local trueOffsetY = merlin.offsety*merlin.scaley
-    return love.graphics.getHeight() -city_floorH -trueOffsetY
 end
