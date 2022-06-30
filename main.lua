@@ -3,14 +3,6 @@ function love.load()
     camera = require 'libraries/camera'
     playerSource = require 'src/playerSource'
     cam = camera()
-    bg_title = {}
-    bg_title.image = love.graphics.newImage("assets/maps/backgrounds/city_bg.png")
-    bg_title.image:setWrap("mirroredrepeat")
-    bg_title.imageQuad = love.graphics.newQuad(0, 0, 1280, 720, bg_title.image:getWidth(), bg_title.image:getHeight())
-    city_floor = love.graphics.newImage("assets/maps/tileSets/city_floor.png")
-    city_floor:setWrap("repeat", "repeat")
-    city_floor_quad = love.graphics.newQuad(0, 0, 1280, 32, city_floor:getWidth(), city_floor:getHeight())
-    love.graphics.setBackgroundColor(love.math.colorFromBytes(148, 217, 235))
     love.graphics.setDefaultFilter("nearest", "nearest")
     love.keyboard.setKeyRepeat(true)
     merlin = playerSource.newPlayer()
@@ -46,8 +38,6 @@ end
 
 function love.draw()
     cam:attach()
-        love.graphics.draw(bg_title.image, bg_title.imageQuad, 0, 0, nil, 4.5, 4.5)
-        love.graphics.draw(city_floor, city_floor_quad, 0, 656, nil, 2)
         merlin.currentAnimation:draw(merlin.spriteSheetWalk, merlin.x, merlin.y, nil, merlin.scalex, merlin.scaley, merlin.offsetx, merlin.offsety)
     cam:detach()
 end
@@ -92,8 +82,5 @@ function stop_merlin()
 end
 
 function CalculateCamHeight()
-    local trueOffsetY = merlin.offsety*merlin.scaley
-    local city_floorH = city_floor:getHeight()*2
-    --[[ return merlin.y+trueOffsetY+city_floorH-love.graphics.getHeight()/2 ]]
     return 360
 end
