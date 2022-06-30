@@ -8,8 +8,8 @@ return {
   height = 30,
   tilewidth = 32,
   tileheight = 32,
-  nextlayerid = 3,
-  nextobjectid = 9,
+  nextlayerid = 5,
+  nextobjectid = 3,
   properties = {},
   tilesets = {
     {
@@ -20,7 +20,7 @@ return {
       spacing = 0,
       margin = 0,
       columns = 21,
-      image = "../../../../Desktop/Game Assets/Tiles/terrain.png",
+      image = "tiles/terrain.png",
       imagewidth = 672,
       imageheight = 736,
       objectalignment = "unspecified",
@@ -47,7 +47,7 @@ return {
       width = 64,
       height = 30,
       id = 1,
-      name = "Tile Layer 1",
+      name = "Platform",
       visible = true,
       opacity = 1,
       offsetx = 0,
@@ -87,34 +87,6 @@ return {
         314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314,
         335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335,
         356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356
-      }
-    },
-    {
-      type = "objectgroup",
-      draworder = "topdown",
-      id = 2,
-      name = "Plataform",
-      visible = true,
-      opacity = 1,
-      offsetx = 0,
-      offsety = 0,
-      parallaxx = 1,
-      parallaxy = 1,
-      properties = {},
-      objects = {
-        {
-          id = 8,
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = 0.0416667,
-          y = 864,
-          width = 2048.13,
-          height = 96,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        }
       }
     }
   }

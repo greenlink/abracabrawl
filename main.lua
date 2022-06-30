@@ -1,6 +1,8 @@
 function love.load()
     anim8 = require 'libraries/anim8'
     camera = require 'libraries/camera'
+    sti = require 'libraries/sti'
+    gameMap = sti('assets/maps/testMap.lua')
     playerSource = require 'src/playerSource'
     cam = camera()
     love.graphics.setDefaultFilter("nearest", "nearest")
@@ -37,6 +39,7 @@ function love.update(dt)
 end
 
 function love.draw()
+    gameMap:draw(0, -240)
     cam:attach()
         merlin.currentAnimation:draw(merlin.spriteSheetWalk, merlin.x, merlin.y, nil, merlin.scalex, merlin.scaley, merlin.offsetx, merlin.offsety)
     cam:detach()
