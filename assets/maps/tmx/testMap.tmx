@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.6" orientation="orthogonal" renderorder="right-down" width="64" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="3">
+<map version="1.9" tiledversion="1.9.0" orientation="orthogonal" renderorder="right-down" width="64" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="4">
  <editorsettings>
   <export target="../testMap.lua" format="lua"/>
  </editorsettings>
  <tileset firstgid="1" name="terrain" tilewidth="32" tileheight="32" tilecount="483" columns="21">
   <image source="../tiles/terrain.png" width="672" height="736"/>
  </tileset>
+ <objectgroup id="6" name="PlatformObj">
+  <object id="3" x="0" y="864" width="2048" height="96"/>
+ </objectgroup>
  <layer id="1" name="Platform" width="64" height="30">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

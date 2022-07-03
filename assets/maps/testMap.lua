@@ -1,20 +1,22 @@
 return {
-  version = "1.5",
+  version = "1.9",
   luaversion = "5.1",
-  tiledversion = "1.8.6",
+  tiledversion = "1.9.0",
+  class = "",
   orientation = "orthogonal",
   renderorder = "right-down",
   width = 64,
   height = 30,
   tilewidth = 32,
   tileheight = 32,
-  nextlayerid = 5,
-  nextobjectid = 3,
+  nextlayerid = 7,
+  nextobjectid = 4,
   properties = {},
   tilesets = {
     {
       name = "terrain",
       firstgid = 1,
+      class = "",
       tilewidth = 32,
       tileheight = 32,
       spacing = 0,
@@ -24,6 +26,8 @@ return {
       imagewidth = 672,
       imageheight = 736,
       objectalignment = "unspecified",
+      tilerendersize = "tile",
+      fillmode = "stretch",
       tileoffset = {
         x = 0,
         y = 0
@@ -41,6 +45,35 @@ return {
   },
   layers = {
     {
+      type = "objectgroup",
+      draworder = "topdown",
+      id = 6,
+      name = "PlatformObj",
+      class = "",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
+      properties = {},
+      objects = {
+        {
+          id = 3,
+          name = "",
+          class = "",
+          shape = "rectangle",
+          x = 0,
+          y = 864,
+          width = 2048,
+          height = 96,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        }
+      }
+    },
+    {
       type = "tilelayer",
       x = 0,
       y = 0,
@@ -48,6 +81,7 @@ return {
       height = 30,
       id = 1,
       name = "Platform",
+      class = "",
       visible = true,
       opacity = 1,
       offsetx = 0,
