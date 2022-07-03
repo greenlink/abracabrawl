@@ -22,7 +22,7 @@ return {
       spacing = 0,
       margin = 0,
       columns = 21,
-      image = "tiles/terrain.png",
+      image = "../assets/tiles/terrain.png",
       imagewidth = 672,
       imageheight = 736,
       objectalignment = "unspecified",
