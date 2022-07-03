@@ -60,11 +60,9 @@ function player:syncPlayer()
 end
 
 function player:move(dt)
-    if love.keyboard.isDown("right") then
+    if love.keyboard.isDown("d", "right") then
         self.isMoving = self:moveRight(dt)
-    end
-
-    if love.keyboard.isDown("left") then
+    elseif love.keyboard.isDown("a", "left") then
         self.isMoving = self:moveLeft(dt)
     end
 
@@ -74,6 +72,7 @@ function player:move(dt)
 end
 
 function player:moveRight(dt)
+
     self.x = self.x + self.speed
     self.currentAnimation = self.animations.right
     self.currentAnimation:resume()
