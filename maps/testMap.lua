@@ -45,42 +45,13 @@ return {
   },
   layers = {
     {
-      type = "objectgroup",
-      draworder = "topdown",
-      id = 6,
-      name = "PlatformObj",
-      class = "",
-      visible = true,
-      opacity = 1,
-      offsetx = 0,
-      offsety = 0,
-      parallaxx = 1,
-      parallaxy = 1,
-      properties = {},
-      objects = {
-        {
-          id = 3,
-          name = "",
-          class = "",
-          shape = "rectangle",
-          x = 0,
-          y = 864,
-          width = 2048,
-          height = 96,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        }
-      }
-    },
-    {
       type = "tilelayer",
       x = 0,
       y = 0,
       width = 64,
       height = 30,
       id = 1,
-      name = "Platform",
+      name = "Ground",
       class = "",
       visible = true,
       opacity = 1,
@@ -121,6 +92,37 @@ return {
         314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314,
         335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335,
         356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356, 356
+      }
+    },
+    {
+      type = "objectgroup",
+      draworder = "topdown",
+      id = 6,
+      name = "SolidGround",
+      class = "",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
+      properties = {},
+      objects = {
+        {
+          id = 3,
+          name = "",
+          class = "",
+          shape = "rectangle",
+          x = 0,
+          y = 864,
+          width = 2048,
+          height = 96,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["colidable"] = true
+          }
+        }
       }
     }
   }

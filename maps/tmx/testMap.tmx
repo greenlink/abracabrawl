@@ -6,10 +6,7 @@
  <tileset firstgid="1" name="terrain" tilewidth="32" tileheight="32" tilecount="483" columns="21">
   <image source="../../assets/tiles/terrain.png" width="672" height="736"/>
  </tileset>
- <objectgroup id="6" name="PlatformObj">
-  <object id="3" x="0" y="864" width="2048" height="96"/>
- </objectgroup>
- <layer id="1" name="Platform" width="64" height="30">
+ <layer id="1" name="Ground" width="64" height="30">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -43,4 +40,11 @@
 356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356
 </data>
  </layer>
+ <objectgroup id="6" name="SolidGround">
+  <object id="3" x="0" y="864" width="2048" height="96">
+   <properties>
+    <property name="colidable" type="bool" value="true"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>
