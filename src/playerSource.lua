@@ -22,7 +22,7 @@ local function newPlayer()
     animations.left = anim8.newAnimation(gridWalk("4-1", 1), 0.125):flipH()
     local currentAnimation = animations.right
     local physics = {}
-    physics.body = love.physics.newBody(world, x, y, "dynamic")
+    physics.body = love.physics.newBody(Map.World, x, y, "dynamic")
     physics.body:setFixedRotation(true)
     physics.shape = love.physics.newRectangleShape(36, 42)
     physics.fixture = love.physics.newFixture(physics.body, physics.shape)

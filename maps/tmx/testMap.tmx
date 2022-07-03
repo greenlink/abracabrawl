@@ -40,7 +40,10 @@
 356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356,356
 </data>
  </layer>
- <objectgroup id="6" name="SolidGround">
+ <objectgroup color="#9bff7d7d" id="6" name="SolidGround">
+  <properties>
+   <property name="collidable" type="bool" value="true"/>
+  </properties>
   <object id="3" x="0" y="864" width="2048" height="96">
    <properties>
     <property name="collidable" type="bool" value="true"/>
