@@ -43,7 +43,7 @@
  <objectgroup id="6" name="SolidGround">
   <object id="3" x="0" y="864" width="2048" height="96">
    <properties>
-    <property name="colidable" type="bool" value="true"/>
+    <property name="collidable" type="bool" value="true"/>
    </properties>
   </object>
  </objectgroup>
