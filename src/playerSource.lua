@@ -7,16 +7,21 @@ local Player = {}
 local Playernmt ={ __index = Player }
 
 local function newPlayer()
-    local spriteSheetWalk = love.graphics.newImage("assets/sprites/characters/player/player_walk.png")
-    local gridWalk = anim8.newGrid(36, 42, spriteSheetWalk:getWidth(), spriteSheetWalk:getHeight())
+
     local x = 50
     local y = 0
+    local width = 36
+    local height = 42
+    local scalex = 2
+    local scaley = 2
     local xVel = 0
     local yVel = 0
     local maxSpeed = 200
     local acceleration = 4000
     local friction = 3500
-    local gravity = 100
+    local gravity = 1500
+    local spriteSheetWalk = love.graphics.newImage("assets/sprites/characters/player/player_walk.png")
+    local gridWalk = anim8.newGrid(width, height, spriteSheetWalk:getWidth(), spriteSheetWalk:getHeight())
     local animations = {}
     animations.right = anim8.newAnimation(gridWalk("4-1", 1), 0.125)
     animations.left = anim8.newAnimation(gridWalk("4-1", 1), 0.125):flipH()
@@ -24,14 +29,16 @@ local function newPlayer()
     local physics = {}
     physics.body = love.physics.newBody(Map.World, x, y, "dynamic")
     physics.body:setFixedRotation(true)
-    physics.shape = love.physics.newRectangleShape(36, 42)
+    physics.shape = love.physics.newRectangleShape(width*scalex, height*scaley)
     physics.fixture = love.physics.newFixture(physics.body, physics.shape)
     return setmetatable(
         {
             x = x,
             y = y,
-            scalex = 2,
-            scaley = 2,
+            width = width,
+            height = height,
+            scalex = scalex,
+            scaley = scaley,
             offsetx = 18,
             offsety = 21,
             xVel = xVel,
@@ -68,7 +75,7 @@ function Player:update(dt)
 end
 
 function Player:draw()
-    self.currentAnimation:draw(self.spriteSheetWalk, self.x -self.offsetx, self.y-self.offsety, nil, self.scalex, self.scaley)
+    self.currentAnimation:draw(self.spriteSheetWalk, self.x - self.offsetx * self.scalex, self.y - self.offsety * self.scaley, nil, self.scalex, self.scaley)
 end
 
 ---------------------------- Player Functions -----------------------------------

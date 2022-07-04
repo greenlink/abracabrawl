@@ -4,7 +4,7 @@ function love.conf(t)
     t.window.title = "AbracaBrawl"
     t.window.icon = "assets/icons/icon_john_64x64.png"
     t.window.width = 1280
-    t.window.height = 720
+    t.window.height = 704
     t.window.borderless = false
     t.window.resizable = false
     t.window.fullscreen = false
